@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping
 class HelloController {
     @GetMapping("/hello") // = @RequestMapping(method = RequestMethod.GET)
     fun hello():String {
-        return "Hello World?"
+        return "Hello"
     }
 }
