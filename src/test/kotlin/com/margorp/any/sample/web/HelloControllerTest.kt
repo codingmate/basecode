@@ -18,7 +18,7 @@ import kotlin.jvm.Throws
 
 @TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 @WebMvcTest(controllers = [HelloController::class]) // Web Test. useable @controller, @ControllerAdvice but can't using @Service, @Component, @Repository
-class HelloControllerTest ( /*@Autowired*/ var mvc : MockMvc ) {
+class HelloControllerTest ( /*@Autowired*/ val mvc : MockMvc ) {
     @Test
     @Throws(Exception::class)
     fun return_String_Hello() {
@@ -30,6 +30,16 @@ class HelloControllerTest ( /*@Autowired*/ var mvc : MockMvc ) {
             .andExpect(MockMvcResultMatchers.status().isOk)
             .andExpect(MockMvcResultMatchers.content().string(expectedString))
             //.andDo(MockMvcResultHandlers.print())
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun Hello가_리턴된다() {
+        val expectedString = "Hello"
+
+        mvc.perform(MockMvcRequestBuilders.get("/hello"))
+            .andExpect(MockMvcResultMatchers.status().isOk)
+            .andExpect(MockMvcResultMatchers.content().string(expectedString))
     }
 
 }
