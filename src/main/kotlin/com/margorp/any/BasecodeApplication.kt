@@ -3,7 +3,6 @@ package com.margorp.any
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
-
 @SpringBootApplication
 class BasecodeApplication
 
