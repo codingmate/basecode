@@ -1,20 +1,25 @@
 package com.margorp.any.date.web
 
-import org.springframework.stereotype.Controller
+
+import com.margorp.any.date.service.DateService
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.RestController
 import java.time.LocalDate
 
 
-@Controller
+@RestController
 @RequestMapping("/date")
-class DateController(
-
-) {
+class DateController {
+    @Autowired
+    lateinit var dateService: DateService
     @GetMapping("/lunardate")
-    @ResponseBody
     suspend fun solarDateToLunarDate(): LocalDate {
-        return LocalDate.of(2022, 12, 31)
+        print(11111)
+
+        val lunarDate = dateService.solarDateToLunarDateByPublicDataApi(LocalDate.of(2022,12,31))
+
+        return lunarDate
     }
 }
